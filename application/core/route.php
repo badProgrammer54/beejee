@@ -28,6 +28,13 @@ class Route
 			$action_name = $routes[2];
 		}
 
+		// получаем id
+		if ( !empty($routes[3]) )
+		{
+			$id = $routes[3];
+			$_GET['id'] = $id;
+		}
+
 		// добавляем префиксы
 		$model_name = 'Model_'.$controller_name;
 		$controller_name = 'Controller_'.$controller_name;
@@ -55,14 +62,6 @@ class Route
 		{
 			include "application/controllers/".$controller_file;
 		}
-		else
-		{
-			/*
-			правильно было бы кинуть здесь исключение,
-			но для упрощения сразу сделаем редирект на страницу 404
-			*/
-			Route::ErrorPage404();
-		}
 		
 		// создаем контроллер
 		$controller = new $controller_name;
@@ -72,10 +71,6 @@ class Route
 		{
 			// вызываем действие контроллера
 			$controller->$action();
-		}
-		else
-		{
-			
 		}
 	
 	}
