@@ -39,7 +39,9 @@ body {
     
 }
 
-.form-task_add {
+.form-task_add,
+.form-task_edit,
+.form-auth {
     display: flex;
     align-items: flex-end;
     margin-bottom: 20px;
@@ -105,9 +107,11 @@ label textarea {
     margin-top: 3px;
 }
 
-.task-edit_link {
+.task-edit_link,
+.task-done_link {
     align-self: center;
     color: var(--text-color);
+    margin-right: 10px;
 }
 
 .auth_link {
@@ -143,4 +147,23 @@ label textarea {
 .header_h1 {
     color: var(--text-color);
     text-decoration: none;
+}
+
+.auth_header {
+    margin-bottom: 10px;
+}
+
+.error {
+    width: auto;
+    border: 1px solid red;
+    border-radius: 10px;
+    padding: 5px 5px;
+}
+
+.done {
+    color: green;
+}
+
+.is_edit {
+    color: orange;
 }

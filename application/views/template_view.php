@@ -10,7 +10,11 @@
 			<div class="container">
 				<div class="header_wrap">
 					<h1><a class="header_h1" href="/main/">BeeJee</a></h1>
-					<a class="auth_link" href="">Войти</a>
+					<?php if(isset($_COOKIE['user'])): ?>
+						<a class="auth_link" href="/auth/exit">Выйти</a>
+					<?php else: ?>
+						<a class="auth_link" href="/auth/">Войти</a>
+					<?php endif; ?>
 				</div>
 			</div>
 		</header>

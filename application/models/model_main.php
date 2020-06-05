@@ -22,7 +22,7 @@ class Model_Main extends Model
             $sort = "ORDER BY `email` ASC"; 
             break;
             case '3':
-            $sort = "ORDER BY `text` ASC"; 
+            $sort = "ORDER BY `done` ASC"; 
             break;
             case '4':
             $sort = "ORDER BY `name` DESC"; 
@@ -31,7 +31,7 @@ class Model_Main extends Model
             $sort = "ORDER BY `email` DESC"; 
             break;
             case '6':
-            $sort = "ORDER BY `text` DESC"; 
+            $sort = "ORDER BY `done` DESC"; 
             break;    
             default:
                 $sort = '';
@@ -41,8 +41,10 @@ class Model_Main extends Model
         // Получения элементов для страницы
         $start = $page != 1 ? ($page - 1) * 3 : 0;
         $number = 3;
-        $sql = "SELECT `id`, `name`, `email`, `text` FROM `tasks` $sort LIMIT $start, $number";
-        $tasks = $db->query($sql);
+        $sql = "SELECT `id`, `name`, `email`, `text`, `done`, `is_edit` FROM `tasks` $sort LIMIT $start, $number";
+        $smtp = $db->prepare($sql);
+        $smtp->execute();
+        $tasks = $smtp->fetchAll(PDO::FETCH_ASSOC);
 
         $result = [
             "tasks" => $tasks,
@@ -52,7 +54,45 @@ class Model_Main extends Model
         return $result;
     }
 
+    function sort($sort) {
+        
+        switch ($sort) {
+			case 'name':
+				if ($_COOKIE['sort'] === '1') {
+					setcookie('sort', 4, time() + 3600, '/');
+				}
+				else {
+					setcookie('sort', 1, time() + 3600, '/');
+				}
+				break;
+			case 'email':
+					if ($_COOKIE['sort'] === '2') {
+						setcookie('sort', 5, time() + 3600, '/');
+					}
+					else {
+						setcookie('sort', 2, time() + 3600, '/');
+					}
+				break;
+			case 'done':
+					if ($_COOKIE['sort'] === '3') {
+						setcookie('sort', 6, time() + 3600, '/');
+					}
+					else {
+						setcookie('sort', 3, time() + 3600, '/');
+					}
+				break;
+			case 'none':
+				setcookie('sort', $_GET['data'], time() - 3600, '/');
+				break;
+			
+			default:
+				setcookie('sort', $_GET['data'], time() - 3600, '/');
+				break;
+		};
+    }
+
     function addTask($name, $email, $text) {
+        $text = htmlspecialchars($text);
         $db = parent::getDb();
         $sql = "INSERT INTO `tasks` (`name`, `email`, `text`) VALUES (:name, :email, :text)";
         $smtp = $db->prepare($sql);
@@ -64,5 +104,6 @@ class Model_Main extends Model
         $smtp->closeCursor();
         return "1";
     }
+
 
 }
