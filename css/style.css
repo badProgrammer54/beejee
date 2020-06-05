@@ -1,0 +1,146 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --main-color: #F7654A;
+    --secondary-color: #F7F7F7;
+    --text-color: #ffffff;
+}
+
+
+body {
+    background-color: var(--secondary-color);
+    
+}
+
+.container {
+    max-width: 1130px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.header {
+    background-color: var(--main-color);
+    padding: 10px 0;
+    margin-bottom: 40px;
+    color: var(--text-color);
+}
+
+.header_wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.tasks_header {
+    
+}
+
+.form-task_add {
+    display: flex;
+    align-items: flex-end;
+    margin-bottom: 20px;
+    padding-top: 10px;
+}
+
+label input,
+label textarea {
+    display: block;
+}
+
+.input {
+    height: 30px;
+    border-radius: 20px;
+    border: 1px solid var(--main-color);
+    margin-right: 10px;
+    padding: 3px 10px;
+}
+
+.textarea {
+    height: 30px;
+    border-radius: 20px;
+    border: 1px solid var(--main-color);
+    margin-right: 10px;
+    padding: 3px 10px;
+}
+
+.btn {
+    cursor: pointer;
+    height: 40px;
+    background-color: var(--main-color);
+    color: var(--text-color);
+    padding: 5px 20px;
+    border-radius: 20px;
+    border: 1px solid var(--main-color);
+}
+
+
+.task {
+    display: flex;
+    margin-top: 20px;
+    background-color: var(--main-color);
+    color: var(--text-color);
+    border-radius: 20px;
+    padding: 15px 20px;
+}
+
+.left {
+    flex: 0 1 30%;
+}
+
+.rigth {
+    flex: 0 1 60%;
+}
+
+.task_name-label {
+    margin-bottom: 10px;
+}
+
+.task_text,
+.task_name,
+.task_email {
+    margin-top: 3px;
+}
+
+.task-edit_link {
+    align-self: center;
+    color: var(--text-color);
+}
+
+.auth_link {
+    align-self: center;
+    color: var(--text-color);
+}
+
+.task_header-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-self: center;
+}
+
+.pages_link-wrapper {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin-top: 20px;
+    font-size: 1.2em;
+}
+
+.pages_link {
+    color: var(--main-color);
+    margin-right: 10px;
+}
+
+.pages_link.active {
+    opacity: 0.5;
+    text-decoration: none;
+    pointer-events: none;
+}
+
+.header_h1 {
+    color: var(--text-color);
+    text-decoration: none;
+}

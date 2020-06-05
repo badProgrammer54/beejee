@@ -10,14 +10,26 @@ class Controller_Main extends Controller
 
 	function action_index()
 	{	
-		$tasks = $this->model->getTasks();
-		$this->view->generate('main_view.php', 'template_view.php', ['tasks' => $tasks]);
+		$result = $this->model->getTasks();
+		$this->view->generate('main_view.php', 'template_view.php', ['tasks' => $result['tasks'], 'page_count' => $result['page_count'], 'page' => 1]);
 	}
 
 	function action_add() 
 	{
 
 		$this->model->addTask($_POST['name'], $_POST['email'], $_POST['text']);
-		$this->action_index();
+		header('Location: http://beejee/main');
+	}
+
+	function action_sort()
+	{
+		$tasks = $this->model->sortTasks($_GET['data']);
+		$this->view->generate('main_view.php', 'template_view.php', ['tasks' => $tasks, 'sort' => $_GET['data']]);
+	}
+
+	function action_page()
+	{
+		$result = $this->model->getTasks($_GET['data']);
+		$this->view->generate('main_view.php', 'template_view.php', ['tasks' => $result['tasks'], 'page_count' => $result['page_count'], 'page' => $_GET['data']]);
 	}
 }

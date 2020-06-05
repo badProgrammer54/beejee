@@ -31,8 +31,8 @@ class Route
 		// получаем id
 		if ( !empty($routes[3]) )
 		{
-			$id = $routes[3];
-			$_GET['id'] = $id;
+			$data = $routes[3];
+			$_GET['data'] = $data;
 		}
 
 		// добавляем префиксы

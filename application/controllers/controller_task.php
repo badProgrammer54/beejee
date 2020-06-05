@@ -16,7 +16,7 @@ class Controller_Task extends Controller
 	function action_edit()
 	{
 		
-		$task = $this->model->getTask($_GET['id']);
+		$task = $this->model->getTask($_GET['data']);
 		$this->view->generate('task_view.php', 'template_view.php', ['task' => $task]);
 	}
 }
