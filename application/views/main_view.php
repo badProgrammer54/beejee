@@ -3,11 +3,11 @@
 <div class="task-add">
     <form class="form-task_add" action="/main/add/" method="POST" >
         <label for="task-add_name"> Логин
-        <input class="input" name="name" id="task-add_name" type="text" ></label>
+        <input class="input" name="name" id="task-add_name" type="text" required></label>
         <label for="task-add_email">Email
-        <input class="input" name="email" id="task-add_email" type="text" ></label>
+        <input class="input" name="email" id="task-add_email" type="email" required></label>
         <label for="task-add_text">Текст
-        <textarea class="textarea" name="text" id="task-add_text" type="text"></textarea></label>
+        <textarea class="textarea" name="text" id="task-add_text" type="text" required></textarea></label>
         <button class="btn btn-add">Добавить задачу</button>
     </form>
 </div>
@@ -16,9 +16,10 @@
     <div class="sort">
         <span>
             Сортировать по 
-            <a class="sort_link" href="/main/sort/name">логину</a>
-            <a class="sort_link" href="/main/sort/email">почте</a>
-            <a  class="sort_link"href="/main/sort/text">описанию</a>
+            <a class="sort_link" href="/main/sort/name">логину</a><?php if($_COOKIE['sort'] === '1' ) echo '(по возрастанию)'; else if ($_COOKIE['sort'] === '4') echo '(по убыванию)'; ?>
+            <a class="sort_link" href="/main/sort/email">почте</a><?php if($_COOKIE['sort'] === '2' ) echo '(по возрастанию)'; else if ($_COOKIE['sort'] === '5') echo '(по убыванию)'; ?>
+            <a class="sort_link"href="/main/sort/text">описанию</a><?php if($_COOKIE['sort'] === '3' ) echo '(по возрастанию)'; else if ($_COOKIE['sort'] === '6') echo '(по убыванию)'; ?>
+            <a class="sort_link"href="/main/sort/none">отменить</a>
         </span>
     </div>
 </div>
